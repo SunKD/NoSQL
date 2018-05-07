@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Quoting</title>
+    <style>
+        h1 {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="error">
+            <!-- tip to easily see objects printed in full instead of [object Object] -->
+            <% JSON.stringify(messages) %>
+                <!-- based on the structure of your messages, determine how to display them -->
+                <% if(messages.registration) { %>
+                    <% for (var x of messages.registration) { %>
+                        <h3>
+                            <%= x %>
+                        </h3>
+                        <% } %>
+                            <% } %>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="font-weight: bold">Here are the awesome quotes!</h1>
+            </div>
+        </div>
+        <% quotes.forEach(function(item){ %>
+        <div class="row">
+            <div class="col-md-12"><%= item["quote"] %></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <% var timeoption= {hour: 'numeric', minute: 'numeric'} %>
+            <% var dateoption = {year: 'numeric', month: 'long', day:'numeric'}%>
+            <div class="col-md-9"> -<%= item["name"] %> at <%=item["createdAt"].toLocaleString('en-US', timeoption)%> <%=item["createdAt"].toLocaleString('en-US', dateoption)%></div>
+        </div>
+        <% }); %>
+    </div>
+</body>
+
+</html>
